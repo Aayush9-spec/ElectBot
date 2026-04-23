@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ElectBot - Interactive Election Process Education Assistant. Learn about voter registration, election timelines, voting methods, and more with AI-powered guidance.">
+    <meta name="keywords" content="election education, voter registration, election process, voting guide, India elections, ECI">
+    <meta name="author" content="Election Education Team">
+    <meta name="theme-color" content="#6366f1">
+    <title>ElectBot – Election Process Education Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="manifest" href="/manifest.json">
+</head>
+<body>
+    <!-- Skip Navigation for Accessibility -->
+    <a href="#main-content" class="skip-link" id="skip-nav">Skip to main content</a>
+
+    <!-- Animated Background -->
+    <div class="bg-animation" aria-hidden="true">
+        <div class="bg-orb bg-orb-1"></div>
+        <div class="bg-orb bg-orb-2"></div>
+        <div class="bg-orb bg-orb-3"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="header-inner">
+            <div class="logo" id="logo">
+                <div class="logo-icon">
+                    <i class="ri-government-line"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>ElectBot</h1>
+                    <span class="logo-tagline">Election Education Assistant</span>
+                </div>
+            </div>
+            <nav class="header-nav" role="navigation" aria-label="Main navigation">
+                <button class="nav-btn active" data-section="home" id="nav-home" aria-label="Home section">
+                    <i class="ri-home-4-line"></i>
+                    <span>Home</span>
+                </button>
+                <button class="nav-btn" data-section="timeline" id="nav-timeline" aria-label="Election timeline">
+                    <i class="ri-time-line"></i>
+                    <span>Timeline</span>
+                </button>
+                <button class="nav-btn" data-section="chat" id="nav-chat" aria-label="AI chat assistant">
+                    <i class="ri-robot-2-line"></i>
+                    <span>AI Chat</span>
+                </button>
+                <button class="nav-btn" data-section="quiz" id="nav-quiz" aria-label="Knowledge quiz">
+                    <i class="ri-questionnaire-line"></i>
+                    <span>Quiz</span>
+                </button>
+                <button class="nav-btn" data-section="map" id="nav-map" aria-label="Polling locations map">
+                    <i class="ri-map-pin-line"></i>
+                    <span>Map</span>
+                </button>
+            </nav>
+            <div class="header-actions">
+                <button class="icon-btn" id="theme-toggle" aria-label="Toggle high contrast mode" title="Toggle high contrast">
+                    <i class="ri-contrast-2-line"></i>
+                </button>
+                <button class="icon-btn" id="font-size-toggle" aria-label="Increase font size" title="Adjust font size">
+                    <i class="ri-font-size-2"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" role="main">
+
+        <!-- ═══════════ HOME SECTION ═══════════ -->
+        <section class="section section-home active" id="section-home" aria-label="Home">
+            <div class="hero">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <i class="ri-shield-star-line"></i>
+                        <span>Powered by Google Gemini AI</span>
+                    </div>
+                    <h2 class="hero-title">
+                        Understand Your
+                        <span class="gradient-text">Democratic Rights</span>
+                    </h2>
+                    <p class="hero-subtitle">
+                        Your interactive guide to the election process. Learn about voter registration,
+                        election timelines, voting methods, and your rights as a citizen — all in one place.
+                    </p>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary btn-lg" id="hero-start-chat" aria-label="Start chatting with ElectBot">
+                            <i class="ri-robot-2-line"></i>
+                            Ask ElectBot
+                        </button>
+                        <button class="btn btn-outline btn-lg" id="hero-explore" aria-label="Explore election timeline">
+                            <i class="ri-compass-3-line"></i>
+                            Explore Timeline
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-visual" aria-hidden="true">
+                    <div class="hero-card hero-card-1">
+                        <i class="ri-calendar-check-line"></i>
+                        <span>8 Key Phases</span>
+                    </div>
+                    <div class="hero-card hero-card-2">
+                        <i class="ri-user-add-line"></i>
+                        <span>Register to Vote</span>
+                    </div>
+                    <div class="hero-card hero-card-3">
+                        <i class="ri-checkbox-circle-line"></i>
+                        <span>Know Your Rights</span>
+                    </div>
+                    <div class="hero-ballot">
+                        <div class="ballot-icon">🗳️</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature Cards -->
+            <div class="features-grid">
+                <button class="feature-card" data-navigate="timeline" id="feature-timeline" aria-label="Learn about election timeline">
+                    <div class="feature-icon feature-icon-blue">
+                        <i class="ri-flow-chart"></i>
+                    </div>
+                    <h3>Election Timeline</h3>
+                    <p>8 phases from announcement to government formation, with detailed breakdowns.</p>
+                    <span class="feature-link">Explore phases <i class="ri-arrow-right-line"></i></span>
+                </button>
+
+                <button class="feature-card" data-navigate="chat" data-query="How do I register to vote?" id="feature-register" aria-label="Learn about voter registration">
+                    <div class="feature-icon feature-icon-green">
+                        <i class="ri-user-add-line"></i>
+                    </div>
+                    <h3>Voter Registration</h3>
+                    <p>Step-by-step guide to registering as a voter, with eligibility info and required documents.</p>
+                    <span class="feature-link">Start registration guide <i class="ri-arrow-right-line"></i></span>
+                </button>
+
+                <button class="feature-card" data-navigate="chat" data-query="Explain the different voting methods in India" id="feature-voting" aria-label="Learn about voting methods">
+                    <div class="feature-icon feature-icon-purple">
+                        <i class="ri-inbox-unarchive-line"></i>
+                    </div>
+                    <h3>Voting Methods</h3>
+                    <p>EVMs, VVPAT, postal ballots — understand how votes are cast and verified securely.</p>
+                    <span class="feature-link">Learn more <i class="ri-arrow-right-line"></i></span>
+                </button>
+
+                <button class="feature-card" data-navigate="chat" data-query="What are my rights and responsibilities as a voter?" id="feature-rights" aria-label="Learn about voter rights">
+                    <div class="feature-icon feature-icon-amber">
+                        <i class="ri-scales-3-line"></i>
+                    </div>
+                    <h3>Voter Rights</h3>
+                    <p>Know your constitutional rights, NOTA option, and responsibilities as a democratic citizen.</p>
+                    <span class="feature-link">Know your rights <i class="ri-arrow-right-line"></i></span>
+                </button>
+
+                <button class="feature-card" data-navigate="quiz" id="feature-quiz" aria-label="Take the election knowledge quiz">
+                    <div class="feature-icon feature-icon-rose">
+                        <i class="ri-questionnaire-line"></i>
+                    </div>
+                    <h3>Knowledge Quiz</h3>
+                    <p>Test your understanding of the election process with our interactive quiz.</p>
+                    <span class="feature-link">Take the quiz <i class="ri-arrow-right-line"></i></span>
+                </button>
+
+                <button class="feature-card" data-navigate="map" id="feature-map" aria-label="Find polling locations">
+                    <div class="feature-icon feature-icon-teal">
+                        <i class="ri-map-pin-2-line"></i>
+                    </div>
+                    <h3>Polling Locations</h3>
+                    <p>Find polling stations near you with our integrated Google Maps search.</p>
+                    <span class="feature-link">Find locations <i class="ri-arrow-right-line"></i></span>
+                </button>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <span class="stat-number" data-count="543">0</span>
+                    <span class="stat-label">Lok Sabha Constituencies</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="950">0</span>
+                    <span class="stat-label">Million+ Registered Voters</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="28">0</span>
+                    <span class="stat-label">States & 8 UTs</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="10">0</span>
+                    <span class="stat-label">Lakh+ Polling Stations</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ TIMELINE SECTION ═══════════ -->
+        <section class="section section-timeline" id="section-timeline" aria-label="Election Timeline">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="ri-flow-chart"></i>
+                    Election Process Timeline
+                </h2>
+                <p class="section-subtitle">From announcement to government formation — understand every phase of the democratic process.</p>
+            </div>
+
+            <div class="timeline-container" id="timeline-container" role="list" aria-label="Election process phases">
+                <!-- Timeline items populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- ═══════════ AI CHAT SECTION ═══════════ -->
+        <section class="section section-chat" id="section-chat" aria-label="AI Chat Assistant">
+            <div class="chat-container">
+                <div class="chat-sidebar">
+                    <div class="chat-sidebar-header">
+                        <h3><i class="ri-lightbulb-line"></i> Quick Questions</h3>
+                    </div>
+                    <div class="quick-questions" id="quick-questions" role="list" aria-label="Suggested questions">
+                        <button class="quick-q-btn" data-query="How does the election process work step by step?" aria-label="Ask about election process steps">
+                            <i class="ri-arrow-right-s-line"></i>
+                            How does the election process work?
+                        </button>
+                        <button class="quick-q-btn" data-query="How can I register to vote in India?" aria-label="Ask about voter registration">
+                            <i class="ri-arrow-right-s-line"></i>
+                            How to register as a voter?
+                        </button>
+                        <button class="quick-q-btn" data-query="What is EVM and how does it work?" aria-label="Ask about EVM">
+                            <i class="ri-arrow-right-s-line"></i>
+                            What is an EVM?
+                        </button>
+                        <button class="quick-q-btn" data-query="What are the different types of elections in India?" aria-label="Ask about election types">
+                            <i class="ri-arrow-right-s-line"></i>
+                            Types of elections in India?
+                        </button>
+                        <button class="quick-q-btn" data-query="What is NOTA and when was it introduced?" aria-label="Ask about NOTA">
+                            <i class="ri-arrow-right-s-line"></i>
+                            What is NOTA?
+                        </button>
+                        <button class="quick-q-btn" data-query="What is the Model Code of Conduct?" aria-label="Ask about Model Code of Conduct">
+                            <i class="ri-arrow-right-s-line"></i>
+                            Model Code of Conduct?
+                        </button>
+                        <button class="quick-q-btn" data-query="Explain voter rights and responsibilities" aria-label="Ask about voter rights">
+                            <i class="ri-arrow-right-s-line"></i>
+                            Voter rights & responsibilities?
+                        </button>
+                        <button class="quick-q-btn" data-query="How are election results counted and declared?" aria-label="Ask about election results">
+                            <i class="ri-arrow-right-s-line"></i>
+                            How are results counted?
+                        </button>
+                    </div>
+                    <button class="btn btn-outline btn-sm" id="clear-chat-btn" aria-label="Clear conversation history">
+                        <i class="ri-delete-bin-6-line"></i> Clear Chat
+                    </button>
+                </div>
+
+                <div class="chat-main">
+                    <div class="chat-header">
+                        <div class="chat-header-info">
+                            <div class="chat-avatar">
+                                <i class="ri-robot-2-line"></i>
+                                <span class="status-dot" aria-hidden="true"></span>
+                            </div>
+                            <div>
+                                <h3>ElectBot AI</h3>
+                                <span class="chat-status" id="chat-status">Ready to help</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chat-messages" id="chat-messages" role="log" aria-label="Chat messages" aria-live="polite">
+                        <div class="chat-welcome">
+                            <div class="chat-welcome-icon">🗳️</div>
+                            <h3>Welcome to ElectBot!</h3>
+                            <p>I'm your AI-powered election education assistant. Ask me anything about the election process, voter registration, voting methods, or your democratic rights.</p>
+                        </div>
+                    </div>
+
+                    <form class="chat-input-area" id="chat-form" aria-label="Send message to ElectBot">
+                        <div class="chat-input-wrapper">
+                            <input
+                                type="text"
+                                id="chat-input"
+                                placeholder="Ask about elections, voting, registration..."
+                                autocomplete="off"
+                                maxlength="500"
+                                aria-label="Type your question"
+                                required
+                            >
+                            <button type="submit" class="chat-send-btn" id="chat-send" aria-label="Send message">
+                                <i class="ri-send-plane-2-fill"></i>
+                            </button>
+                        </div>
+                        <span class="chat-disclaimer">ElectBot provides educational information. Always verify with official sources like <a href="https://www.eci.gov.in" target="_blank" rel="noopener noreferrer">eci.gov.in</a></span>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ QUIZ SECTION ═══════════ -->
+        <section class="section section-quiz" id="section-quiz" aria-label="Election Knowledge Quiz">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="ri-questionnaire-line"></i>
+                    Test Your Knowledge
+                </h2>
+                <p class="section-subtitle">Challenge yourself with questions about the Indian election process.</p>
+            </div>
+
+            <div class="quiz-container" id="quiz-container">
+                <div class="quiz-start" id="quiz-start">
+                    <div class="quiz-start-icon">🎯</div>
+                    <h3>Election Process Quiz</h3>
+                    <p>10 questions about the Indian election process. Test how well you understand your democratic system!</p>
+                    <div class="quiz-meta">
+                        <span><i class="ri-question-line"></i> 10 Questions</span>
+                        <span><i class="ri-timer-line"></i> No time limit</span>
+                        <span><i class="ri-trophy-line"></i> Instant results</span>
+                    </div>
+                    <button class="btn btn-primary btn-lg" id="start-quiz-btn" aria-label="Start the quiz">
+                        <i class="ri-play-line"></i> Start Quiz
+                    </button>
+                </div>
+
+                <div class="quiz-active hidden" id="quiz-active">
+                    <div class="quiz-progress">
+                        <div class="quiz-progress-bar">
+                            <div class="quiz-progress-fill" id="quiz-progress-fill" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <span class="quiz-counter" id="quiz-counter">Question 1 of 10</span>
+                    </div>
+                    <div class="quiz-question-card" id="quiz-question-card">
+                        <h3 class="quiz-question" id="quiz-question"></h3>
+                        <div class="quiz-options" id="quiz-options" role="radiogroup" aria-label="Answer options">
+                        </div>
+                    </div>
+                    <div class="quiz-explanation hidden" id="quiz-explanation">
+                        <div class="quiz-explanation-content" id="quiz-explanation-content"></div>
+                        <button class="btn btn-primary" id="next-question-btn" aria-label="Next question">
+                            Next Question <i class="ri-arrow-right-line"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="quiz-results hidden" id="quiz-results">
+                    <div class="quiz-results-icon" id="quiz-results-icon"></div>
+                    <h3 id="quiz-results-title"></h3>
+                    <div class="quiz-score-circle">
+                        <svg viewBox="0 0 120 120" aria-hidden="true">
+                            <circle cx="60" cy="60" r="54" class="score-bg"/>
+                            <circle cx="60" cy="60" r="54" class="score-fill" id="score-circle"/>
+                        </svg>
+                        <span class="score-text" id="score-text">0%</span>
+                    </div>
+                    <p id="quiz-results-message"></p>
+                    <button class="btn btn-primary btn-lg" id="retake-quiz-btn" aria-label="Retake quiz">
+                        <i class="ri-refresh-line"></i> Retake Quiz
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ MAP SECTION ═══════════ -->
+        <section class="section section-map" id="section-map" aria-label="Polling Location Finder">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="ri-map-pin-2-line"></i>
+                    Find Polling Locations
+                </h2>
+                <p class="section-subtitle">Search for polling stations, election offices, and voter registration centers near you.</p>
+            </div>
+
+            <div class="map-container">
+                <div class="map-controls">
+                    <div class="map-search-wrapper">
+                        <i class="ri-search-line"></i>
+                        <input
+                            type="text"
+                            id="map-search"
+                            placeholder="Enter your city or area..."
+                            aria-label="Search for polling locations"
+                        >
+                        <button class="btn btn-primary btn-sm" id="map-search-btn" aria-label="Search">
+                            <i class="ri-search-line"></i> Search
+                        </button>
+                    </div>
+                    <button class="btn btn-outline btn-sm" id="map-locate-btn" aria-label="Use my current location">
+                        <i class="ri-crosshair-2-line"></i> My Location
+                    </button>
+                </div>
+                <div class="map-wrapper">
+                    <div id="google-map" class="google-map" role="application" aria-label="Google Map showing polling locations"></div>
+                    <div class="map-overlay hidden" id="map-overlay">
+                        <i class="ri-map-pin-line"></i>
+                        <p>Enter a location above or click "My Location" to find nearby polling stations.</p>
+                    </div>
+                </div>
+                <div class="map-info">
+                    <div class="map-info-card">
+                        <i class="ri-information-line"></i>
+                        <div>
+                            <h4>Finding Your Polling Station</h4>
+                            <p>Visit <a href="https://electoralsearch.eci.gov.in/" target="_blank" rel="noopener noreferrer">electoralsearch.eci.gov.in</a> to find your exact polling station using your voter ID or personal details.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <i class="ri-government-line"></i>
+                <span>ElectBot © {{ current_year }}</span>
+            </div>
+            <p class="footer-disclaimer">
+                Educational purposes only. For official information, visit
+                <a href="https://www.eci.gov.in" target="_blank" rel="noopener noreferrer">Election Commission of India</a>.
+            </p>
+            <div class="footer-links">
+                <a href="https://www.eci.gov.in" target="_blank" rel="noopener noreferrer" aria-label="Election Commission of India">ECI</a>
+                <a href="https://www.nvsp.in" target="_blank" rel="noopener noreferrer" aria-label="National Voter Service Portal">NVSP</a>
+                <a href="https://electoralsearch.eci.gov.in" target="_blank" rel="noopener noreferrer" aria-label="Electoral Search">Electoral Search</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Google Maps API -->
+    {% if maps_api_key %}
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ maps_api_key }}&libraries=places&callback=initMap" async defer></script>
+    {% endif %}
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
