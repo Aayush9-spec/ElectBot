@@ -34,10 +34,8 @@ csp = {
     'default-src': ["'self'"],
     'script-src': [
         "'self'",
-        "'unsafe-inline'",
         "https://maps.googleapis.com",
         "https://maps.gstatic.com",
-        "https://fonts.googleapis.com",
         "https://cdn.jsdelivr.net"
     ],
     'style-src': [
@@ -63,7 +61,6 @@ csp = {
 talisman = Talisman(
     app,
     content_security_policy=csp,
-    content_security_policy_nonce_in=['script-src'],
     force_https=False  # Cloud Run handles HTTPS termination
 )
 
