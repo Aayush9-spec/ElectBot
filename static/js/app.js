@@ -83,7 +83,7 @@ function renderTimeline() {
   container.innerHTML = TIMELINE_DATA.map((phase, i) => `
     <div class="timeline-item" role="listitem" data-index="${i}">
       <div class="timeline-dot"></div>
-      <div class="timeline-card" tabindex="0" aria-expanded="false" onclick="togglePhase(${i})" onkeydown="if(event.key==='Enter')togglePhase(${i})">
+      <div class="timeline-card" tabindex="0" aria-expanded="false" data-phase="${i}">
         <h3><span class="phase-num">Phase ${i + 1}</span> ${phase.name}</h3>
         <div class="duration"><i class="ri-time-line"></i> ${phase.duration}</div>
         <p>${phase.desc}</p>
@@ -93,6 +93,12 @@ function renderTimeline() {
       </div>
     </div>
   `).join('');
+
+  // Attach event listeners (CSP-safe, no inline handlers)
+  container.querySelectorAll('.timeline-card').forEach(card => {
+    card.addEventListener('click', () => togglePhase(parseInt(card.dataset.phase)));
+    card.addEventListener('keydown', e => { if (e.key === 'Enter') togglePhase(parseInt(card.dataset.phase)); });
+  });
 }
 
 function togglePhase(index) {
@@ -234,11 +240,16 @@ function showQuestion() {
   const optContainer = document.getElementById('quiz-options');
   const letters = ['A', 'B', 'C', 'D'];
   optContainer.innerHTML = q.options.map((opt, i) => `
-    <button class="quiz-option" onclick="selectAnswer(${i})" aria-label="Option ${letters[i]}: ${opt}">
+    <button class="quiz-option" data-answer="${i}" aria-label="Option ${letters[i]}: ${opt}">
       <span class="opt-letter">${letters[i]}</span>
       ${escapeHtml(opt)}
     </button>
   `).join('');
+
+  // Attach event listeners (CSP-safe, no inline handlers)
+  optContainer.querySelectorAll('.quiz-option').forEach(btn => {
+    btn.addEventListener('click', () => selectAnswer(parseInt(btn.dataset.answer)));
+  });
 }
 
 function selectAnswer(index) {
@@ -259,7 +270,7 @@ function selectAnswer(index) {
   const nextBtn = document.getElementById('next-question-btn');
   nextBtn.textContent = currentQ === quizQuestions.length - 1 ? 'See Results' : 'Next Question';
 }
-window.selectAnswer = selectAnswer;
+// selectAnswer is now called via addEventListener, no need for window global
 
 function nextQuestion() {
   currentQ++;
