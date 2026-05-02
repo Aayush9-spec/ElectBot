@@ -1,0 +1,59 @@
+{
+    "timeline": {
+        "title": "Election Timeline & Key Phases",
+        "icon": "📅",
+        "phases": [
+            {
+                "name": "Announcement & Notification",
+                "duration": "6-8 weeks before polling",
+                "description": "Election Commission announces election dates, issues notification, and the Model Code of Conduct comes into effect.",
+                "details": [
+                    "Election Commission issues press conference",
+                    "Gazette notification published",
+                    "Model Code of Conduct enforced immediately",
+                    "Political parties begin preparations"
+                ]
+            },
+            {
+                "name": "Nomination Filing",
+                "duration": "7 days from notification",
+                "description": "Candidates file their nomination papers along with required documents and security deposit.",
+                "details": [
+                    "Candidates collect nomination forms",
+                    "Security deposit: ₹25,000 (General), ₹12,500 (SC/ST)",
+                    "Affidavit with criminal, financial, educational details",
+                    "Filing before Returning Officer"
+                ]
+            }
+        ]
+    },
+    "voter_registration": {
+        "title": "Voter Registration Guide",
+        "steps": [
+            "Check eligibility (18+ citizen)",
+            "Form 6 for new voters",
+            "NVSP Portal or Voter Helpline App",
+            "EPIC (Voter ID) issuance"
+        ]
+    },
+    "quiz": [
+        {
+            "q": "What is the minimum age to vote in India?",
+            "options": ["16 years", "18 years", "21 years", "25 years"],
+            "correct": 1,
+            "explanation": "The voting age was reduced from 21 to 18 years by the 61st Amendment Act, 1988."
+        },
+        {
+            "q": "Which body conducts elections in India?",
+            "options": ["Supreme Court", "Parliament", "Election Commission of India", "NITI Aayog"],
+            "correct": 2,
+            "explanation": "The Election Commission of India (ECI) is the constitutional body that conducts all major elections."
+        },
+        {
+            "q": "What does EVM stand for?",
+            "options": ["Electronic Voter Machine", "Electronic Voting Machine", "Every Voter Matters", "Election Verification Method"],
+            "correct": 1,
+            "explanation": "EVM stands for Electronic Voting Machine, used since 1982 in India."
+        }
+    ]
+}
