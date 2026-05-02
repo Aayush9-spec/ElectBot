@@ -62,8 +62,14 @@ function navigateTo(section) {
   if (el) el.classList.add('active');
   if (btn) btn.classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
-  if (section === 'timeline') renderTimeline();
-  if (section === 'map') initMapFallback();
+  if (section === 'timeline') {
+    renderTimeline();
+    updateMastery('timeline');
+  }
+  if (section === 'map') {
+    initMapFallback();
+    updateMastery('map');
+  }
 }
 
 // ═══ Accessibility ═══
@@ -321,6 +327,8 @@ function showResults() {
   const resultsEl = document.getElementById('quiz-results');
   resultsEl?.classList.remove('hidden');
 
+  updateMastery('quiz');
+
   const pct = Math.round((score / quizQuestions.length) * 100);
   const circumference = 2 * Math.PI * 54; // 339.292
   const offset = circumference - (pct / 100) * circumference;
@@ -330,14 +338,17 @@ function showResults() {
     document.getElementById('score-circle').style.strokeDashoffset = offset;
   }, 100);
 
-  let icon, title, msg;
-  if (pct >= 80) { icon = '🏆'; title = 'Excellent!'; msg = 'You have a great understanding of the election process!'; }
+  let icon, title, msg, badge = '';
+  if (pct >= 80) { 
+    icon = '🏆'; title = 'Excellent!'; msg = 'You have a great understanding of the election process!'; 
+    if (pct === 100) badge = '<div class="civic-badge"><i class="ri-medal-line"></i> Certified Civic Citizen</div>';
+  }
   else if (pct >= 50) { icon = '👍'; title = 'Good job!'; msg = 'You know the basics. Explore more topics to improve!'; }
   else { icon = '📚'; title = 'Keep learning!'; msg = 'Use ElectBot to learn more about elections and try again!'; }
 
   document.getElementById('quiz-results-icon').textContent = icon;
   document.getElementById('quiz-results-title').textContent = title;
-  document.getElementById('quiz-results-message').textContent = `You scored ${score}/${quizQuestions.length}. ${msg}`;
+  document.getElementById('quiz-results-message').innerHTML = `You scored ${score}/${quizQuestions.length}. ${msg}${badge}`;
 }
 
 // ═══ Map ═══
@@ -437,9 +448,43 @@ document.getElementById('map-locate-btn')?.addEventListener('click', () => {
   }
 });
 
+// ═══ Civic Mastery Tracking ═══
+const MASTERY_STATE = JSON.parse(localStorage.getItem('electbot_mastery') || '{"timeline":false,"quiz":false,"map":false}');
+
+function updateMastery(key, value = true) {
+  MASTERY_STATE[key] = value;
+  localStorage.setItem('electbot_mastery', JSON.stringify(MASTERY_STATE));
+  renderMastery();
+}
+
+function renderMastery() {
+  let completeCount = 0;
+  Object.keys(MASTERY_STATE).forEach(key => {
+    const isComplete = MASTERY_STATE[key];
+    if (isComplete) completeCount++;
+    const stepEl = document.getElementById(`step-${key}`);
+    if (stepEl) {
+      stepEl.classList.toggle('complete', isComplete);
+      stepEl.querySelector('.step-status').textContent = isComplete ? 'Mastered' : 'Not Started';
+    }
+  });
+
+  const percent = Math.round((completeCount / 3) * 100);
+  const fill = document.getElementById('mastery-progress-fill');
+  const txt = document.getElementById('mastery-percent');
+  if (fill) fill.style.width = percent + '%';
+  if (txt) txt.textContent = percent + '% Complete';
+}
+
+document.querySelectorAll('.roadmap-step').forEach(step => {
+  step.addEventListener('click', () => navigateTo(step.dataset.target));
+});
+
 // ═══ Init ═══
 document.addEventListener('DOMContentLoaded', () => {
   console.log('🗳️ ElectBot initialized');
+  renderMastery();
+  
   // Handle direct links to sections
   const path = window.location.pathname.replace('/', '');
   const validSections = ['home', 'timeline', 'chat', 'quiz', 'map'];
